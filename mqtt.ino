@@ -30,11 +30,6 @@ PubSubClient client(espClient);
 void setup() {
     Serial.begin(9600);
     while (!Serial) {}
-
-    // Switch on LED for init
-    pinMode(ArduinoLED, OUTPUT);
-    digitalWrite(ArduinoLED, LOW);
-
     Serial.println("------------------------------------------------------------");
     Serial.println("ENS160 - Digital air quality sensor");
     Serial.println();
@@ -74,6 +69,10 @@ void loop() {
         reconnect();
     }
     client.loop();
+
+     // Switch on LED for to confirm everything is okay.
+    pinMode(ArduinoLED, OUTPUT);
+    digitalWrite(ArduinoLED, LOW);
 
     ///// AHT20 start
     sensors_event_t humidity1, temp; 
